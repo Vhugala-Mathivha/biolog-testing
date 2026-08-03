@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { BioLogLogo, LogoutIcon } from './Icons';
 import './DashboardSidebar.css';
 
@@ -9,7 +9,9 @@ import './DashboardSidebar.css';
  * (Styling Part 2.2).
  */
 function DashboardSidebar({ navItems, onLogout }) {
+  const location = useLocation();
   const navigate = useNavigate();
+  const onScannerPage = location.pathname === '/admin/scanner';
 
   const handleLogout = () => {
     onLogout();
@@ -25,16 +27,28 @@ function DashboardSidebar({ navItems, onLogout }) {
 
       <nav className="dash-nav">
         {navItems.map((item, index) => (
-          <NavLink
-            key={item.path}
-            to={item.path}
-            className={({ isActive }) =>
-              `dash-nav-item${isActive ? ' active' : ''}${index === navItems.length - 1 ? ' no-border' : ''}`
-            }
-          >
-            <item.icon className="dash-nav-icon" />
-            <span>{item.label}</span>
-          </NavLink>
+          item.path === '/admin/scanner' ? (
+            <button
+              key={item.path}
+              type="button"
+              className={`dash-nav-item dash-session-toggle ${onScannerPage ? 'stop' : 'start'}${index === navItems.length - 1 ? ' no-border' : ''}`}
+              onClick={() => navigate(onScannerPage ? '/admin/dashboard' : '/admin/scanner')}
+            >
+              <item.icon className="dash-nav-icon" />
+              <span>{onScannerPage ? 'Stop Session' : 'Start Session'}</span>
+            </button>
+          ) : (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) =>
+                `dash-nav-item${isActive ? ' active' : ''}${index === navItems.length - 1 ? ' no-border' : ''}`
+              }
+            >
+              <item.icon className="dash-nav-icon" />
+              <span>{item.label}</span>
+            </NavLink>
+          )
         ))}
       </nav>
 

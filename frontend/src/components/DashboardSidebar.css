@@ -50,6 +50,19 @@
   transition: transform 0.15s ease;
 }
 
+.dash-session-toggle {
+  border: none;
+  cursor: pointer;
+}
+
+.dash-session-toggle.start {
+  background: #28a745;
+}
+
+.dash-session-toggle.stop {
+  background: #dc3545;
+}
+
 .dash-nav-item.no-border {
   border-bottom: none;
 }
