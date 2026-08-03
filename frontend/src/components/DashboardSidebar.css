@@ -82,21 +82,21 @@
 
 /* Default state: green "Start Session" */
 .dash-nav-item.session-nav-item {
-  background: #28a745;
+  background: #10531f;
 }
 
 .dash-nav-item.session-nav-item:hover {
-  background: #218838;
+  background: #10531f;
   transform: scale(1.04);
 }
 
 /* Active state: red "Stop Session" */
 .dash-nav-item.session-nav-item.session-running {
-  background: #dc3545;
+  background: #570810;
 }
 
 .dash-nav-item.session-nav-item.session-running:hover {
-  background: #c82333;
+  background: #570810;
   transform: scale(1.04);
 }
 
