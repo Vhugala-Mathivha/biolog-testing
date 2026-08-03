@@ -281,7 +281,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover; /* This makes sure the face isn't stretched */
-  transform: scaleX(-1); /* Mirror mode so it feels natural */
+  transform: none; /* Registration preview shows the user as they appear in real life */
 }
 
 /* The "Face Guide" oval that helps users position themselves */
