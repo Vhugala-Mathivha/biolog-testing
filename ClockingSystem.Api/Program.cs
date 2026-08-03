@@ -28,7 +28,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 var frontendOrigin = builder.Configuration["Frontend:Origin"]
     ?? Environment.GetEnvironmentVariable("FRONTEND_ORIGIN")
-    ?? "https://bio-log-virid.vercel.app";
+    ?? "https://biolog-testing.vercel.app";
 
 // UPDATED: CORS whitelist includes production Vercel URLs, the
 // configured Frontend:Origin, and local development origins.
@@ -36,7 +36,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowVercel",
         policy => policy.WithOrigins(
-                            "https://biolog-face-recognition.vercel.app", 
+                            "https://biolog-testing.vercel.app", 
                             "https://biolog-face-recognition-gamma.vercel.app",
                             frontendOrigin,
                             "http://localhost:3001",
