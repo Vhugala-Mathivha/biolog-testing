@@ -12,7 +12,14 @@ const PAGE_SIZE = 6;
 const NAV_ITEMS = [
   { label: 'Dashboard', icon: HouseIcon, path: '/admin/dashboard' },
   { label: 'Register Employee', icon: MultipleUsersIcon, path: '/admin/register-employee' },
-  { label: 'Start Session', icon: CameraIcon, path: '/admin/scanner' },
+  {
+    label: 'Start Session',
+    activeLabel: 'Stop Session',
+    icon: CameraIcon,
+    path: '/admin/scanner',
+    sessionToggle: true,
+    exitPath: '/admin/dashboard',
+  },
   { label: 'Settings', icon: GearIcon, path: '/admin/settings' },
 ];
 

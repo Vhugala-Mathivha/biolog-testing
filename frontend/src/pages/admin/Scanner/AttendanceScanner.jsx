@@ -6,12 +6,19 @@ import { getEmployees } from '../../../api';
 import '../../../components/DashboardLayout.css';
 import './AttendanceScanner.css';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5101';
+const API_URL = import.meta.env.VITE_API_URL || 'https://biolog-face-recognition.onrender.com';
 
 const NAV_ITEMS = [
   { label: 'Dashboard', icon: HouseIcon, path: '/admin/dashboard' },
   { label: 'Register Employee', icon: MultipleUsersIcon, path: '/admin/register-employee' },
-  { label: 'Start Session', icon: CameraIcon, path: '/admin/scanner' },
+  {
+    label: 'Start Session',
+    activeLabel: 'Stop Session',
+    icon: CameraIcon,
+    path: '/admin/scanner',
+    sessionToggle: true,
+    exitPath: '/admin/dashboard',
+  },
   { label: 'Settings', icon: GearIcon, path: '/admin/settings' },
 ];
 
@@ -23,6 +30,7 @@ function AttendanceScanner({ onLogout }) {
   const videoRef = useRef(null);
   const streamRef = useRef(null);
   const lastMessageTimeRef = useRef(0);
+  const isActiveRef = useRef(true);
 
   const [faceMatcher, setFaceMatcher] = useState(null);
   const [status, setStatus] = useState('Initializing System...');
@@ -49,6 +57,22 @@ function AttendanceScanner({ onLogout }) {
     }
   }, []);
 
+  // Track whether the component is still mounted so async callbacks
+  // (recognition loop, clocking requests) don't fire after unmount.
+  useEffect(() => {
+    isActiveRef.current = true;
+    return () => {
+      isActiveRef.current = false;
+    };
+  }, []);
+
+  const stopCamera = useCallback(() => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach((track) => track.stop());
+      streamRef.current = null;
+    }
+  }, []);
+
   useEffect(() => {
     const initialize = async () => {
       try {
@@ -59,10 +83,12 @@ function AttendanceScanner({ onLogout }) {
           faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
           faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
         ]);
+        if (!isActiveRef.current) return;
         setModelsLoaded(true);
 
         setStatus('Syncing Employee Database...');
         const employees = await getEmployees();
+        if (!isActiveRef.current) return;
         const labeledDescriptors = [];
 
         for (const emp of employees) {
@@ -97,37 +123,36 @@ function AttendanceScanner({ onLogout }) {
         }
       } catch (err) {
         console.error('Initialization Failed:', err);
-        setStatus('System Offline.');
+        if (isActiveRef.current) setStatus('System Offline.');
       }
     };
     initialize();
 
+    // Cleanup: Stop camera and null out refs when the component unmounts.
+    // (The recognition interval is cleaned up separately via the effect
+    // below that owns it, so no interval leak on unmount.)
     return () => {
-      if (streamRef.current) {
-        streamRef.current.getTracks().forEach((track) => track.stop());
-        streamRef.current = null;
-      }
+      isActiveRef.current = false;
+      stopCamera();
     };
-  }, [startCamera]);
+  }, [startCamera, stopCamera]);
 
-  const showMessage = (text, type) => {
-    const now = Date.now();
-    if (now - lastMessageTimeRef.current < MESSAGE_COOLDOWN_MS) return;
-    lastMessageTimeRef.current = now;
-    setMessageType(type);
-    setLastMessage(text);
-    setTimeout(() => setLastMessage(''), MESSAGE_COOLDOWN_MS);
-  };
+  // Recognition loop - owned by this effect so React cleanly clears the
+  // interval when the component unmounts or the stream is torn down.
+  useEffect(() => {
+    if (!modelsLoaded || !faceMatcher) return undefined;
 
-  const handleVideoPlay = () => {
     const interval = setInterval(async () => {
+      if (!isActiveRef.current) return;
       if (!videoRef.current || !faceMatcher || !modelsLoaded) return;
+      if (!videoRef.current.srcObject) return;
 
       const detection = await faceapi
         .detectSingleFace(videoRef.current, new faceapi.TinyFaceDetectorOptions())
         .withFaceLandmarks()
         .withFaceDescriptor();
 
+      if (!isActiveRef.current) return;
       if (!detection) return;
 
       const bestMatch = faceMatcher.findBestMatch(detection.descriptor);
@@ -141,6 +166,16 @@ function AttendanceScanner({ onLogout }) {
     }, 700);
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modelsLoaded, faceMatcher]);
+
+  const showMessage = (text, type) => {
+    const now = Date.now();
+    if (now - lastMessageTimeRef.current < MESSAGE_COOLDOWN_MS) return;
+    lastMessageTimeRef.current = now;
+    setMessageType(type);
+    setLastMessage(text);
+    setTimeout(() => setLastMessage(''), MESSAGE_COOLDOWN_MS);
   };
 
   const processClocking = async (capturedVector) => {
@@ -155,6 +190,9 @@ function AttendanceScanner({ onLogout }) {
         body: JSON.stringify({ vector: Array.from(capturedVector) }),
       });
 
+      // Ignore late responses if the session was stopped while waiting.
+      if (!isActiveRef.current) return;
+
       if (response.ok) {
         const result = await response.json();
         showMessage(`Welcome ${result.name}!`, 'success');
@@ -166,6 +204,7 @@ function AttendanceScanner({ onLogout }) {
         showMessage(`Face verification failed. Server error (${response.status}). Please try again.`, 'error');
       }
     } catch (err) {
+      if (!isActiveRef.current) return;
       console.error('Identification error:', err);
       showMessage('Face verification failed: could not reach the server. Check your connection.', 'error');
     }
@@ -181,7 +220,7 @@ function AttendanceScanner({ onLogout }) {
 
         <div className="scanner-kiosk">
           <div className="video-wrap">
-            <video ref={videoRef} autoPlay muted onPlay={handleVideoPlay} playsInline />
+            <video ref={videoRef} autoPlay muted playsInline />
             <div className="face-oval" />
           </div>
 

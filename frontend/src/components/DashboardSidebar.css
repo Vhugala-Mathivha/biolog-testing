@@ -69,6 +69,37 @@
   transform: scale(1.04);
 }
 
+/* ---- Session toggle button (Start/Stop Session) ---- */
+.dash-nav-item.session-nav-item {
+  border: none;
+  border-radius: var(--input-radius);
+  margin-top: 10px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: #ffffff;
+}
+
+/* Default state: green "Start Session" */
+.dash-nav-item.session-nav-item {
+  background: #28a745;
+}
+
+.dash-nav-item.session-nav-item:hover {
+  background: #218838;
+  transform: scale(1.04);
+}
+
+/* Active state: red "Stop Session" */
+.dash-nav-item.session-nav-item.session-running {
+  background: #dc3545;
+}
+
+.dash-nav-item.session-nav-item.session-running:hover {
+  background: #c82333;
+  transform: scale(1.04);
+}
+
 .dash-logout-btn {
   margin-top: auto;
   margin-bottom: 28px;
