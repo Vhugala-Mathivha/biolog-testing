@@ -22,6 +22,7 @@ const MESSAGE_COOLDOWN_MS = 4000;
 function AttendanceScanner({ onLogout }) {
   const videoRef = useRef(null);
   const streamRef = useRef(null);
+  const scanIntervalRef = useRef(null);
   const lastMessageTimeRef = useRef(0);
 
   const [faceMatcher, setFaceMatcher] = useState(null);
@@ -103,6 +104,10 @@ function AttendanceScanner({ onLogout }) {
     initialize();
 
     return () => {
+      if (scanIntervalRef.current) {
+        clearInterval(scanIntervalRef.current);
+        scanIntervalRef.current = null;
+      }
       if (streamRef.current) {
         streamRef.current.getTracks().forEach((track) => track.stop());
         streamRef.current = null;
@@ -120,7 +125,9 @@ function AttendanceScanner({ onLogout }) {
   };
 
   const handleVideoPlay = () => {
-    const interval = setInterval(async () => {
+    if (scanIntervalRef.current) return;
+
+    scanIntervalRef.current = setInterval(async () => {
       if (!videoRef.current || !faceMatcher || !modelsLoaded) return;
 
       const detection = await faceapi
@@ -139,8 +146,6 @@ function AttendanceScanner({ onLogout }) {
         showMessage('Face not recognized. Please try again or contact HR.', 'error');
       }
     }, 700);
-
-    return () => clearInterval(interval);
   };
 
   const processClocking = async (capturedVector) => {
