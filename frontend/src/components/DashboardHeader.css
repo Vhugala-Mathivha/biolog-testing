@@ -1,0 +1,48 @@
+.dash-header {
+  width: 100%;
+}
+
+.dash-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dash-header-title {
+  color: var(--color-heading);
+  font-size: 26px;
+}
+
+.dash-header-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dash-header-profile-icon {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.dash-header-profile-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-header-role {
+  font-weight: 700;
+  color: var(--color-heading);
+  font-size: 14px;
+}
+
+.dash-header-name {
+  color: var(--color-subheading);
+  font-size: 13px;
+}
+
+.dash-header-subheading {
+  color: var(--color-subheading);
+  font-size: 14px;
+  margin-top: 6px;
+}

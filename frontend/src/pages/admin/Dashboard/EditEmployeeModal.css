@@ -1,0 +1,63 @@
+.edit-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.edit-modal {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  width: 480px;
+  max-width: 92vw;
+}
+
+.edit-modal-title {
+  color: var(--color-heading);
+  font-size: 20px;
+}
+
+.edit-modal-subtitle {
+  color: var(--color-subheading);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.edit-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.edit-modal-row {
+  display: flex;
+  gap: 16px;
+}
+
+.edit-modal-row > * {
+  flex: 1;
+}
+
+.edit-modal-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-heading);
+}
+
+.edit-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.edit-modal-actions .app-button {
+  min-width: 110px;
+}

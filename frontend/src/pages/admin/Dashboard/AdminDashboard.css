@@ -1,0 +1,116 @@
+.admin-total-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.admin-total-label {
+  color: var(--color-heading);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.admin-total-count {
+  color: var(--color-count-text);
+  background-color: var(--color-block-bg);
+  border: 1px solid var(--color-block-border);
+  border-radius: 30px;
+  padding: 6px 22px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.dash-state-msg {
+  margin-top: 24px;
+  color: var(--color-subheading);
+}
+
+.admin-table-wrap {
+  margin-top: 24px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-table-bg);
+}
+
+.admin-table th {
+  text-align: left;
+  color: #000000;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 14px 18px;
+}
+
+.admin-table td {
+  padding: 14px 18px;
+  font-size: 13px;
+  color: var(--color-row-text);
+  border-top: 1px solid #C7DCDD;
+}
+
+.admin-no-data {
+  text-align: center;
+  padding: 24px !important;
+}
+
+.admin-action-icons {
+  display: flex;
+  gap: 14px;
+}
+
+.admin-icon-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.admin-icon-btn img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.admin-pagination-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.admin-pagination-info {
+  color: #A7A7A7;
+  font-size: 13px;
+}
+
+.admin-pagination-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.admin-page-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--color-input-border);
+  background-color: #ffffff;
+  color: var(--color-heading);
+  font-size: 13px;
+}
+
+.admin-page-btn.active {
+  background: var(--grad-button);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.admin-page-btn:disabled {
+  color: #C3C3C3;
+  cursor: not-allowed;
+}

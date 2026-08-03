@@ -1,0 +1,6 @@
+@ClockingSystem.Api_HostAddress = http://localhost:5101
+
+GET {{ClockingSystem.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

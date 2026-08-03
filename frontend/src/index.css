@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  /* Brand gradients */
+  --grad-button: linear-gradient(90deg, #5BDDE5 0%, #014CAE 100%);
+  --grad-button-border: linear-gradient(180deg, #455F71 0%, #4E83D5 100%);
+  --grad-sidebar: linear-gradient(180deg, #000001 0%, #3634CD 100%);
+  --grad-nav-active: linear-gradient(90deg, #58D8E3 0%, #004BAD 100%);
+
+  /* Text / link colors */
+  --color-heading: #000000;
+  --color-subheading: #8D8D8D;
+  --color-link: #4FADF9;
+  --color-link-hover: #ACD7FC;
+  --color-accent-teal: #2CCADE;
+
+  /* Input styling */
+  --color-placeholder: #AEB5B5;
+  --color-input-border: #C3C3C3;
+  --color-input-bg: #ECF6F6;
+  --input-radius: 20px;
+
+  /* Table / cards */
+  --color-table-bg: #D6ECED;
+  --color-block-bg: #E6F3F3;
+  --color-block-border: #CED4D4;
+  --color-count-text: #868B8B;
+  --color-row-line: #E2E2E2;
+  --color-row-text: #8A8A8A;
+
+  /* Logout button */
+  --color-logout-bg: #292222;
+
+  --font-heading: 'Archivo Black', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  margin: 0;
+}
+
+p, span, label, input, select, button, a {
+  font-family: var(--font-body);
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Links follow the app-wide hyperlink rule: never re-color on visited/active */
+a:link, a:visited, a:active {
+  color: var(--color-link);
+}
+
+input, select {
+  font-family: var(--font-body);
+}

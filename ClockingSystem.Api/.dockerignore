@@ -1,0 +1,12 @@
+bin/
+obj/
+*.user
+.vs/
+.git/
+.gitignore
+Dockerfile
+.dockerignore
+README.md
+schema.sql
+Properties/launchSettings.json
+TempReflect/

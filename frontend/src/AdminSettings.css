@@ -1,0 +1,131 @@
+.admin-settings-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.admin-settings-container h1 {
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.settings-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0;
+}
+
+.settings-tab {
+  padding: 0.75rem 1.5rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.settings-tab:hover {
+  color: #7c3aed;
+}
+
+.settings-tab.active {
+  color: #7c3aed;
+  border-bottom-color: #7c3aed;
+}
+
+.settings-panel {
+  background: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.settings-panel h2 {
+  color: #333;
+  margin: 0 0 1.5rem;
+  font-size: 1.3rem;
+}
+
+.settings-panel .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.settings-panel .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #475569;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.settings-panel .form-group input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  background: white;
+  transition: all 0.2s;
+}
+
+.settings-panel .form-group input:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.settings-panel .disabled-input {
+  background-color: #f8f9fa !important;
+  color: #888 !important;
+  cursor: not-allowed;
+}
+
+.settings-panel .success-message {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  border: 1px solid #bbf7d0;
+  text-align: center;
+}
+
+.settings-panel .error-message {
+  background-color: #fef2f2;
+  color: #dc2626;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  border: 1px solid #fecaca;
+  text-align: center;
+}
+
+.settings-btn {
+  width: 100%;
+  padding: 0.85rem;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.settings-btn:hover {
+  opacity: 0.9;
+}
+
+.settings-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

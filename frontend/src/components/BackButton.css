@@ -1,0 +1,28 @@
+.back-button {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--color-link);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease;
+  z-index: 2;
+}
+
+.back-button:hover {
+  background-color: #ECECEC;
+}
+
+.back-button svg {
+  transition: transform 0.15s ease;
+}
+
+.back-button:hover svg {
+  transform: translateX(-3px);
+}

@@ -1,0 +1,102 @@
+.reg-employee-form {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.reg-row {
+  display: flex;
+  gap: 10%;
+}
+
+.reg-row > * {
+  flex: 1;
+}
+
+.reg-row-triple {
+  align-items: flex-start;
+}
+
+.reg-message {
+  margin-top: 16px;
+}
+
+.face-vector-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.capture-face-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 18px;
+  border-radius: var(--input-radius);
+  border: 1px solid var(--color-input-border);
+  background-color: #ffffff;
+  color: var(--color-row-text);
+}
+
+.face-captured {
+  justify-content: space-between;
+}
+
+.face-vector-hint {
+  color: var(--color-placeholder);
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.reg-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10%;
+  margin-top: 12px;
+}
+
+.reg-actions .app-button {
+  min-width: 140px;
+}
+
+/* Face scan overlay page */
+.face-scanner-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.video-wrapper {
+  position: relative;
+  margin-top: 24px;
+  width: 420px;
+  height: 320px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+}
+
+.scanner-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.face-guide-overlay {
+  position: absolute;
+  inset: 20px;
+  border: 3px dashed var(--color-accent-teal);
+  border-radius: 50%;
+}
+
+.scanner-status {
+  margin-top: 16px;
+  color: var(--color-subheading);
+}
+
+.face-scanner-page .app-button {
+  margin-top: 20px;
+}

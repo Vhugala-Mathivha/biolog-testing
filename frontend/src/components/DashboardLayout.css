@@ -1,0 +1,12 @@
+.dashboard-page {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 36px 48px;
+  overflow-x: auto;
+}

@@ -1,0 +1,106 @@
+.attendance-scanner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.scanner-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.status-pill {
+  padding: 8px 22px;
+  border-radius: 50px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  background: #eee;
+  color: #555;
+  font-size: 13px;
+}
+
+.status-pill.online {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.status-pill.loading {
+  background: var(--color-block-bg);
+  color: var(--color-count-text);
+  border: 1px solid var(--color-block-border);
+}
+
+.scanner-kiosk {
+  position: relative;
+  width: 420px;
+  height: 420px;
+  max-width: 90vw;
+  max-height: 90vw;
+}
+
+.video-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 8px solid #014CAE;
+  background: #000;
+}
+
+.video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.face-oval {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 62%;
+  height: 78%;
+  border: 3px dashed rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+}
+
+.scan-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  padding: 18px 28px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  z-index: 10;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: scanFadeIn 0.25s ease-out;
+  max-width: 85%;
+}
+
+.scan-overlay.success {
+  background: rgba(31, 138, 44, 0.95);
+}
+
+.scan-overlay.error {
+  background: rgba(161, 30, 30, 0.95);
+}
+
+@keyframes scanFadeIn {
+  from { opacity: 0; transform: translate(-50%, -40%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.scanner-footer {
+  margin-top: 24px;
+  color: var(--color-subheading);
+  font-size: 13px;
+}

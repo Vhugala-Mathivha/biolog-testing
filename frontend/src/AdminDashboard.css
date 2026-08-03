@@ -1,0 +1,341 @@
+.admin-dashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 240px;
+  background-color: #7c3aed;
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.admin-sidebar h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.admin-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-sidebar li {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: background-color 0.2s;
+}
+
+.admin-sidebar li:hover {
+  background-color: #6d28d9;
+}
+
+.admin-sidebar li.active {
+  background-color: #6d28d9;
+  font-weight: 600;
+}
+
+.admin-sidebar li.logout {
+  color: #fca5a5;
+}
+
+.admin-sidebar li.logout:hover {
+  background-color: rgba(252, 165, 165, 0.15);
+}
+
+.admin-sidebar .sidebar-user {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.admin-sidebar .user-avatar {
+  font-size: 1.5rem;
+}
+
+.admin-sidebar .user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-sidebar .user-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.admin-sidebar .user-role {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.admin-sidebar .icon {
+  font-size: 1.2rem;
+}
+
+/* Main Content */
+.admin-main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.admin-main-content h1 {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Summary Cards */
+.admin-summary-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.admin-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.admin-card h3 {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-card .card-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.admin-card.total .card-value { color: #3498db; }
+.admin-card.active .card-value { color: #2ecc71; }
+.admin-card.hr .card-value { color: #7c3aed; }
+.admin-card.pending .card-value { color: #f39c12; }
+
+/* Employee Table */
+.admin-employee-list {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.admin-employee-list .employee-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.admin-employee-list .employee-list-header h2 {
+  color: #333;
+  margin: 0;
+}
+
+.admin-employee-list .search-container {
+  flex: 0 0 300px;
+}
+
+.admin-employee-list .search-input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.admin-employee-list .search-input:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
+}
+
+.admin-employee-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-employee-list th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background-color: #f8f9fa;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.admin-employee-list td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e9ecef;
+  color: #333;
+  vertical-align: middle;
+}
+
+.admin-employee-list .employee-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-employee-list .emp-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.admin-employee-list .emp-number {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.admin-employee-list .contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.admin-employee-list .emp-email {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.admin-employee-list .emp-phone {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.admin-employee-list .status-badge {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.admin-employee-list .status-badge.active {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.admin-employee-list .status-badge.inactive {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.admin-employee-list .role-badge {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.admin-employee-list .role-badge.hr {
+  background-color: #e8d5f5;
+  color: #6b21a8;
+}
+
+.admin-employee-list .role-badge.superadmin {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.admin-employee-list .role-badge.pending {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.admin-employee-list .role-badge.employee {
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+
+.admin-employee-list .action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.admin-employee-list .promote-btn,
+.admin-employee-list .delete-btn {
+  background: none;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.admin-employee-list .promote-btn:hover {
+  background-color: #f5f3ff;
+  border-color: #7c3aed;
+}
+
+.admin-employee-list .delete-btn:hover {
+  background-color: #fef2f2;
+  border-color: #dc2626;
+}
+
+.admin-employee-list .loading-state {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.admin-employee-list .error-state {
+  text-align: center;
+  padding: 3rem;
+  color: #dc2626;
+}
+
+.admin-employee-list .error-state p {
+  margin-bottom: 1rem;
+}
+
+.admin-employee-list .retry-btn {
+  padding: 0.5rem 1.5rem;
+  background-color: #7c3aed;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.admin-employee-list .retry-btn:hover {
+  background-color: #6d28d9;
+}
+
+.admin-employee-list .no-data {
+  text-align: center;
+  padding: 2rem;
+  color: #888;
+  font-style: italic;
+}

@@ -1,0 +1,35 @@
+.app-button {
+  height: 48px;
+  border-radius: var(--input-radius);
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 15px;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.app-button-primary {
+  background: var(--grad-button);
+  border-image: var(--grad-button-border) 1;
+}
+
+.app-button-primary:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+.app-button-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.app-button-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.app-button-secondary {
+  background-color: var(--color-input-bg);
+  border: 1px solid var(--color-input-border);
+  color: var(--color-heading);
+  font-weight: 500;
+}

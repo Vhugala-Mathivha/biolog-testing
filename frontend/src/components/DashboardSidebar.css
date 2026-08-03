@@ -1,0 +1,100 @@
+.dash-sidebar {
+  width: 20%;
+  min-height: 100vh;
+  background: var(--grad-sidebar);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+}
+
+.dash-brand-row {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.dash-brand-logo {
+  width: 34px;
+  height: auto;
+  aspect-ratio: 671 / 591;
+}
+
+.dash-brand-text {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  color: #ffffff;
+}
+
+.dash-nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+}
+
+.dash-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 82%;
+  margin: 0 auto;
+  padding: 14px 0;
+  color: #ffffff;
+  font-size: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  transition: transform 0.15s ease;
+}
+
+.dash-nav-item.no-border {
+  border-bottom: none;
+}
+
+.dash-nav-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.dash-nav-item.active {
+  background: var(--grad-nav-active);
+  border-radius: var(--input-radius);
+  border-bottom-color: transparent;
+  font-weight: 700;
+  transform: scale(1.04);
+}
+
+.dash-logout-btn {
+  margin-top: auto;
+  margin-bottom: 28px;
+  width: 82%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-radius: var(--input-radius);
+  border: none;
+  background-color: var(--color-logout-bg);
+  color: #ffffff;
+  font-weight: 400;
+  transition: transform 0.12s ease;
+}
+
+.dash-logout-btn:hover {
+  background: var(--grad-button);
+  border: 2px solid transparent;
+  border-image: var(--grad-button-border) 1;
+  transform: scale(1.04);
+}
+
+.dash-logout-btn:active {
+  background: var(--color-logout-bg);
+  border: none;
+  transform: scale(1);
+}

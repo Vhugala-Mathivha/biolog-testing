@@ -1,0 +1,76 @@
+.form-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-field-label {
+  color: var(--color-heading);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.form-field-input-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.form-field-control {
+  width: 100%;
+  height: 48px;
+  border-radius: var(--input-radius);
+  border: 1px solid var(--color-input-border);
+  background-color: var(--color-input-bg);
+  color: #000000;
+  text-align: center;
+  font-size: 15px;
+  padding: 0 44px;
+  outline: none;
+}
+
+.form-field-control::placeholder {
+  color: var(--color-placeholder);
+}
+
+.form-field-control:not(.has-icon) {
+  padding-left: 18px;
+}
+
+.form-field-control:not(.has-toggle) {
+  padding-right: 18px;
+}
+
+.form-field-select {
+  appearance: none;
+  cursor: pointer;
+}
+
+.form-field-icon {
+  position: absolute;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.form-field-icon-img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.form-field-toggle {
+  position: absolute;
+  right: 16px;
+  background: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  color: var(--color-placeholder);
+}

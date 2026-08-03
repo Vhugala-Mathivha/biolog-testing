@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: biolog-api
+    runtime: docker
+    plan: free
+    region: omaha
+    dockerfilePath: ./ClockingSystem.Api/Dockerfile
+    dockerContext: ./ClockingSystem.Api
+    healthCheckPath: /api/health
+    envVars:
+      - key: FRONTEND_ORIGIN
+        value: https://bio-log-virid.vercel.app
+      - key: JWT_ISSUER
+        value: ClockingSystem
+      - key: JWT_AUDIENCE
+        value: ClockingSystemUsers
+      # Set these via the Render dashboard (Secrets) — do NOT hardcode:
+      # - DATABASE_URL       (Aiven PostgreSQL connection string)
+      # - JWT_KEY            (min 32-char random string)
+      # - PORT               (auto-set by Render)
