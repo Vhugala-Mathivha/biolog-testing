@@ -1,0 +1,194 @@
+/* Employee Attendance Report Page */
+
+.report-state-msg {
+  margin-top: 32px;
+  padding: 40px;
+  text-align: center;
+  background-color: var(--color-table-bg, #f8f9fb);
+  border-radius: 12px;
+  color: var(--color-heading, #222);
+  font-size: 15px;
+}
+
+.report-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.report-error p {
+  margin: 0;
+}
+
+.report-container {
+  margin-top: 24px;
+  background-color: var(--color-table-bg, #ffffff);
+  border: 1px solid var(--color-border, #e6e8ee);
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.report-header {
+  border-bottom: 2px solid var(--color-border, #e6e8ee);
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+}
+
+.report-title {
+  margin: 0 0 8px 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-heading, #222);
+}
+
+.report-subtitle {
+  margin: 0 0 4px 0;
+  font-size: 13px;
+  color: var(--color-muted, #6b7280);
+}
+
+.report-period {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-muted, #6b7280);
+}
+
+/* Summary cards */
+.report-summary-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.report-summary-card {
+  flex: 1;
+  min-width: 140px;
+  background-color: #f8f9fb;
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.report-summary-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.report-summary-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #222;
+}
+
+/* Status pills */
+.status-pill {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.status-present {
+  background-color: #DFF3E1;
+  color: #1f8a2c;
+}
+
+.status-late {
+  background-color: #FBF1D6;
+  color: #8a6d1f;
+}
+
+.status-absent {
+  background-color: #F8DEDE;
+  color: #a11e1e;
+}
+
+.status-in-progress {
+  background-color: #E3EDFB;
+  color: #1f5fa8;
+}
+
+.status-invalid {
+  background-color: #F8DEDE;
+  color: #a11e1e;
+}
+
+/* Table */
+.report-table-wrap {
+  margin-top: 0;
+}
+
+.report-table th,
+.report-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border, #e6e8ee);
+  font-size: 14px;
+}
+
+.report-table th {
+  font-weight: 600;
+  color: var(--color-heading, #222);
+  background-color: #f8f9fb;
+}
+
+/* Actions */
+.report-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.report-download-btn {
+  background: linear-gradient(135deg, #1f8a2c, #145a1e);
+  color: #ffffff;
+  border: none;
+}
+
+.report-back-btn {
+  background-color: transparent;
+  color: #222;
+  border: 1px solid #d1d5db;
+}
+
+.report-download-error {
+  margin-top: 16px;
+  color: #a11e1e;
+  background-color: #f8dede;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+}
+
+/* Print styles — the report should look clean when printed */
+@media print {
+  .dash-sidebar,
+  .dash-header,
+  .report-actions,
+  .report-download-error {
+    display: none !important;
+  }
+
+  .dashboard-main {
+    padding: 0;
+  }
+
+  .report-container {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .report-table th,
+  .report-table td {
+    border-bottom: 1px solid #ccc;
+  }
+}

@@ -143,6 +143,53 @@ export async function getEmployeeHistory(empNo, from, to) {
   return request(`/api/reports/hr-summary/${empNo}${query ? `?${query}` : ''}`);
 }
 
+// Dedicated employee attendance report (employee profile + full history)
+export async function getEmployeeAttendanceReport(empNo, from, to) {
+  const params = new URLSearchParams();
+  if (from) params.append('from', from);
+  if (to) params.append('to', to);
+  const query = params.toString();
+  return request(`/api/reports/hr-summary/${empNo}/report${query ? `?${query}` : ''}`);
+}
+
+// Download the employee's attendance report as a formatted text file
+export async function downloadEmployeeAttendanceReport(empNo, from, to) {
+  const params = new URLSearchParams();
+  if (from) params.append('from', from);
+  if (to) params.append('to', to);
+  const query = params.toString();
+
+  const token = localStorage.getItem('token');
+  const response = await fetch(`${API_URL}/api/reports/hr-summary/${empNo}/report/download${query ? `?${query}` : ''}`, {
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  });
+
+  if (!response.ok) {
+    let errorData;
+    try {
+      errorData = await response.text();
+    } catch {
+      errorData = null;
+    }
+    throw new ApiError(errorData || `Request failed with status ${response.status}`, response.status, errorData);
+  }
+
+  const blob = await response.blob();
+  const url = window.URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+
+  // Extract a sensible filename from Content-Disposition if available
+  const disposition = response.headers.get('content-disposition');
+  const match = disposition && disposition.match(/filename="?([^";]+)"?/);
+  link.download = match ? match[1] : `AttendanceReport_${empNo}.txt`;
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  window.URL.revokeObjectURL(url);
+}
+
 export async function getOrganisationReport() {
   return request('/api/reports/organisation');
 }
@@ -185,6 +232,8 @@ export default {
   getHoursWorked,
   getHrDashboardSummary,
   getEmployeeHistory,
+  getEmployeeAttendanceReport,
+  downloadEmployeeAttendanceReport,
   getOrganisationReport,
   healthCheck,
 };

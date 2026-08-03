@@ -9,6 +9,7 @@ import AdminSettings from './pages/admin/Settings/AdminSettings';
 import AttendanceScanner from './pages/admin/Scanner/AttendanceScanner';
 import HRDashboard from './pages/hr/Dashboard/HRDashboard';
 import HRSettings from './pages/hr/Settings/HRSettings';
+import Report from './pages/hr/Report/Report';
 
 function getStoredUser() {
   try {
@@ -83,6 +84,11 @@ function App() {
         <Route path="/hr/dashboard" element={
           <ProtectedRoute user={user} allow={['HR']}>
             <HRDashboard onLogout={handleLogout} user={user} />
+          </ProtectedRoute>
+        } />
+        <Route path="/hr/report/:empNo" element={
+          <ProtectedRoute user={user} allow={['HR']}>
+            <Report onLogout={handleLogout} user={user} />
           </ProtectedRoute>
         } />
         <Route path="/hr/settings" element={

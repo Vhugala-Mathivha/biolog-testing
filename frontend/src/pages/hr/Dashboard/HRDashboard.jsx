@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DashboardSidebar from '../../../components/DashboardSidebar';
 import DashboardHeader from '../../../components/DashboardHeader';
 import Hyperlink from '../../../components/Hyperlink';
 import { HouseIcon, GearIcon, MultipleUsersIcon, LateIcon, PresentIcon, AbsentIcon } from '../../../components/Icons';
-import { getHrDashboardSummary, getEmployeeHistory } from '../../../api';
+import { getHrDashboardSummary } from '../../../api';
 import '../../../components/DashboardLayout.css';
 import './HRDashboard.css';
 
@@ -15,6 +16,7 @@ const NAV_ITEMS = [
 const PREVIEW_ROWS = 6;
 
 function HRDashboard({ onLogout, user }) {
+  const navigate = useNavigate();
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -45,16 +47,9 @@ function HRDashboard({ onLogout, user }) {
   const employees = summary?.employees || [];
   const visibleRows = showAll ? employees : employees.slice(0, PREVIEW_ROWS);
 
-  const handleViewReport = async (employee) => {
-    try {
-      const history = await getEmployeeHistory(employee.employeeNumber);
-      const historyText = history.map((h) =>
-        `${h.status} - Clock In: ${h.clockInTime ? new Date(h.clockInTime).toLocaleTimeString() : '-'}, Clock Out: ${h.clockOutTime ? new Date(h.clockOutTime).toLocaleTimeString() : '-'}, Duration: ${h.duration || '-'}`
-      ).join('\n');
-      alert(`Report for ${employee.fullName} (${employee.employeeNumber}):\n\n${historyText || 'No history available.'}`);
-    } catch (err) {
-      alert(`Failed to load report for ${employee.fullName}.`);
-    }
+  // "View" navigates to the dedicated employee attendance report page.
+  const handleViewReport = (employee) => {
+    navigate(`/hr/report/${encodeURIComponent(employee.employeeNumber)}`);
   };
 
   const formatTime = (timestamp) => {
